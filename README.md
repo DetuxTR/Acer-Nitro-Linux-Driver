@@ -1,6 +1,6 @@
 # Acer-Nitro-Linux-Driver
 An experimental driver to use acer gaming wmi functions in linux.
-⚠️Warning⚠️
+#⚠️Warning⚠️
 This driver is experimental, dont use if you dont know what you are doing. I'm not responsible for melted plastics,broken cpus/gpus,bricked bioses, kernel panics. You are at your own.
 
 Compiling:
