@@ -15,9 +15,9 @@ insmod acer-nitro-driver.ko
 
 Usage:
 
-Firstly type su . Driver is just running on root account beacuse of i dont set the udev rules yet.
 
-To set your cpu fan to manual fan control mode you should type:
+
+To set your cpu fan to manual fan control mode you should type(root access needed):
 
 echo 1-0-768 > /dev/acer-nitro (⚠️Warning⚠️ Your fan speed will be 0 rpm)
 

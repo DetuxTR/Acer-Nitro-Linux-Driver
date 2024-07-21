@@ -4,6 +4,7 @@
 #include "linux/gfp_types.h"
 #include "linux/kern_levels.h"
 
+#include "linux/kobject.h"
 #include "linux/kstrtox.h"
 #include "linux/printk.h"
 
@@ -32,6 +33,10 @@ static struct class *cls;
 int major;
 
 static void handle_cmd(char * Message);
+static int an_uevent(const struct device *dev,struct kobj_uevent_env *env){
+  add_uevent_var(env, "DEVMODE=%#o",0666);
+  return 0;
+}
 static ssize_t device_write(struct file *file, const char *buffer,
                             size_t length, loff_t *offset) {
                               char Message[20];
@@ -56,6 +61,7 @@ static void create_chardev(void) {
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(6, 4, 0)
 
   cls = class_create(DEV_NAME);
+  cls->dev_uevent=an_uevent;
 
 #else
 
@@ -162,7 +168,8 @@ static void handle_cmd(char * Message) {
     }
     if (strcmp(msgs[1], "1") == 0) {
       
-      
+
+
       printk(KERN_INFO "Gpu Fan Speed Behaivor Mode");
       
 
@@ -181,7 +188,7 @@ static void handle_cmd(char * Message) {
     }
   
   }
-  strcpy(Message," ");
+  
 }
 
 module_init(module_start);
