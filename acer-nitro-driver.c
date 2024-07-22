@@ -116,14 +116,14 @@ static void handle_cmd(char * Message) {
   char *msg = Message;
   char *msgs[10];
   u32 cbcmd = 0;
-  u32 wmiout[40];
+  
   int a = 0;
   char *token;
 
   while ((token = strsep(&msg, "-")) != NULL) {
     msgs[a] = (char*) kmalloc(sizeof(token), GFP_KERNEL);
     strcpy(msgs[a], token);
-    printk(KERN_INFO "a:%s", token);
+    
     a++;
   }
   if (strcmp(msgs[0], "0") == 0) {
@@ -131,7 +131,7 @@ static void handle_cmd(char * Message) {
 
     if (strcmp(msgs[1], "1") == 0) {
       printk(KERN_INFO "Cpu Fan Speed Control Mode");
-      printk(KERN_INFO "awq%lu", strlen(msgs[2]));
+     
       strcpy(&msgs[2][strlen(msgs[2]) - 1], "1");
 
       if (kstrtoint(msgs[2], 10, &cbcmd) != 0) {
@@ -154,11 +154,10 @@ static void handle_cmd(char * Message) {
     printk(KERN_INFO "Fan Speed Behaivor Mode");
     if (strcmp(msgs[1], "0") == 0) {
       printk(KERN_INFO "Cpu Fan Speed Behaivor Mode");
-      printk(KERN_INFO "acbg:%s", msgs[2]);
-      printk(KERN_INFO "%c", msgs[2][3]);
+      
+      
       strcpy(&msgs[2][3], "1");
 
-      printk(KERN_INFO "zd%s", msgs[2]);
       if (kstrtoint(msgs[2], 10, &cbcmd) != 0) {
         printk(KERN_ERR "Input value should be integer");
       }
@@ -173,18 +172,18 @@ static void handle_cmd(char * Message) {
       printk(KERN_INFO "Gpu Fan Speed Behaivor Mode");
       
 
-      printk(KERN_INFO "acbg:%s", msgs[2]);
-      printk(KERN_INFO "%c", msgs[2][3]);
+      
+     
       strcpy(&msgs[2][5], "1");
       strcpy(&msgs[2][6], "0");
-      printk(KERN_INFO "zd%s", msgs[2]);
+      
       if (kstrtoint(msgs[2], 10, &cbcmd) != 0) {
         printk(KERN_ERR "Input value should be integer");
       }
       printk(KERN_INFO "behaivor:%d", cbcmd);
 
       call_wmi_method(14, cbcmd, NULL);
-      printk(KERN_INFO "%c", msgs[2][6]);
+      
     }
   
   }
