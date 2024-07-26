@@ -1,0 +1,1 @@
+savedcmd_/home/detux/acer-nitro-linux-driver/acer-nitro-driver.mod := printf '%s\n'   acer-nitro-driver.o | awk '!x[$$0]++ { print("/home/detux/acer-nitro-linux-driver/"$$0) }' > /home/detux/acer-nitro-linux-driver/acer-nitro-driver.mod

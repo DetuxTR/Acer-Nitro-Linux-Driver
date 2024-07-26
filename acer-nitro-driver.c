@@ -36,6 +36,7 @@ int major;
 
 static void handle_cmd(char * Message);
 static acpi_status call_wmi_method(u32 m_id, u64 m_input, u32 *m_output);
+
 static ssize_t device_read(struct file *, char * __user ,size_t ,loff_t *);
 static int an_uevent(const struct device *dev,struct kobj_uevent_env *env){
   add_uevent_var(env, "DEVMODE=%#o",0666);
@@ -44,12 +45,16 @@ static int an_uevent(const struct device *dev,struct kobj_uevent_env *env){
 static ssize_t device_read(struct file *filp, char *__user buffer,size_t length,loff_t *offset){
   u32 cfanspout[10];
   u32 gfanspout[10];
+  u32 sysinf[15];
+  u32 cfanbehout[10];
   call_wmi_method( 17, 1, cfanspout);
   call_wmi_method( 17, 4, gfanspout);
+  call_wmi_method(5,0,sysinf);
+  call_wmi_method(15,1,cfanbehout);
   int bytes_read = 0;
-  char msg[22];
+  char msg[37];
   
-  snprintf(msg,21,"%d-%d",*cfanspout,*gfanspout);
+  snprintf(msg,36,"%d-%d-%d-%d",*cfanspout,*gfanspout,*sysinf,*cfanbehout);
   const char *msg_ptr = msg;
   printk("%s",msg);
    if (!*(msg+ *offset)) { 
@@ -130,6 +135,7 @@ static acpi_status call_wmi_method(u32 m_id, u64 m_input, u32 *m_output) {
   }
   return status;
 }
+
 static int __init module_start(void) {
   printk(KERN_INFO "Module started");
   create_chardev();

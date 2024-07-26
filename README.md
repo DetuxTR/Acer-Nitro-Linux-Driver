@@ -9,7 +9,7 @@ Compiling:
 
 You need your kernels linux-headers package. Just run command make to compile the module.
 
-Running:
+Running(root access needed):
 
 insmod acer-nitro-driver.ko
 
@@ -17,7 +17,7 @@ Usage:
 
 
 
-To set your cpu fan to manual fan control mode you should type(root access needed):
+To set your cpu fan to manual fan control mode you should type:
 
 echo 1-0-768 > /dev/acer-nitro (⚠️Warning⚠️ Your fan speed will be 0 rpm)
 
