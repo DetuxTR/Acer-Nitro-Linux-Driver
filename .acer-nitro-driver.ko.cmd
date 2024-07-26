@@ -1,1 +1,0 @@
-savedcmd_/home/detux/acer-nitro-linux-driver/acer-nitro-driver.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/detux/acer-nitro-linux-driver/acer-nitro-driver.ko /home/detux/acer-nitro-linux-driver/acer-nitro-driver.o /home/detux/acer-nitro-linux-driver/acer-nitro-driver.mod.o

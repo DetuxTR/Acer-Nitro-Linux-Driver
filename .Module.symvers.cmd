@@ -1,1 +1,0 @@
-savedcmd_/home/detux/acer-nitro-linux-driver/Module.symvers :=  scripts/mod/modpost -M  -a    -N  -o /home/detux/acer-nitro-linux-driver/Module.symvers -n -T /home/detux/acer-nitro-linux-driver/modules.order -i Module.symvers -e 
