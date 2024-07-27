@@ -27,7 +27,7 @@ echo 0-1-{fan speed,should be a multiple of 256}
 
 To set your gpu fan to manual fan control mode you should type:
 
-echo 1-1-49152 > /dev/acer-nitro (⚠️Warning⚠️ Your fan speed will be 0 rpm)
+echo 1-1-49152 > /dev/acer-nitro (⚠️Warning⚠️ Your fan speed will be 0 rpm)-If this not works try set 16384
 
 To set gpu fan speed:
 
@@ -37,5 +37,7 @@ echo 0-4-{fan speed,should be a multiple of 256}
 Maximum fan speeds can be changed on every machine, just try multiples of 256.
 
 If you get Input value should be integer error in dmesg try reload the module.
+
+Normally I should be able get fan behaviors by passing method id 15 to wmi interface but it wasnt work. This very important because of for first time working this driver it should set fan mode automatically to make a good user friendly gui app. This is the biggest problem on this driver.
 
 Good luck.
